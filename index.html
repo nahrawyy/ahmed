@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Elnahrawy</title>
+    <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/026/958/196/original/green-alien-face-free-png.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background: radial-gradient(#f0f0f0, #d9d9d9);
+        }
+        header {
+            background: #003366;
+            color: #fff;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #ffcc00;
+        }
+        .hero {
+            background: url("https://scontent.fcai21-2.fna.fbcdn.net/v/t39.30808-6/456233704_1473492239958387_7302798283858203995_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=BnQtx6WsJ4YQ7kNvgH2XzEo&_nc_ht=scontent.fcai21-2.fna&_nc_gid=A6PAqhHPVacV-8ZzcsQrblL&oh=00_AYBJ_ws5vB5KHMFMdBnVrPM7Zi1J9frL2Vqo0NqvtLhv4A&oe=66F51175")no-repeat;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+            padding: 6rem 2rem;
+            border-radius: 0 0 20px 20px;
+            background-attachment: fixed;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            cursor: default;
+        }
+        .hero h1:hover{
+            color: aqua;
+            text-shadow: 1px 1px 1px #00ff37, 1px 1.2px 1px #00ff37,
+            1px 1.3px 1px #00ff37,1px 1.4px 1px #00ff37,
+            1px 1.5px 1px #00ff37 , 1px 1.6px 1px #00ff37 ;
+        }
+        .hero img {
+            max-width: 100%;
+            height: auto;
+            filter: brightness(0.8);
+        }
+        .section-title {
+            display: flex;
+            justify-content: center;
+            font-size: 60px;
+            font-weight: 800;
+            margin-top: 90px;
+            margin-bottom: 70px;
+            color: rgb(4, 181, 187);
+            text-shadow: 1px 1px 1px #000025, 1px 1.5px 1px #000025,
+            1px 2px 1px #000025,1px 2.5px 1px #000025,
+            1px 3px 1px #000025 , 1px 4px 1px #000025 ;
+        }
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            padding: 0 1rem;
+        }
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            width: 300px;
+            margin: 1rem;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .card-icon {
+            font-size: 4rem;
+            color: #003366;
+            text-align: center;
+            padding: 1rem;
+            background: #e6e6e6;
+        }
+        .card-content {
+            padding: 1rem;
+        }
+        .card-content h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #003366;
+        }
+        .card-content h5 {
+            font-size: 1rem;
+            color: #666;
+        }
+        footer {
+            background: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer a {
+            color: #ffcc00;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .typewriter-text {
+            font-size: 24px;
+            border-right: 2px solid #ffdd57; /* Cursor effect */
+            white-space: nowrap; /* Prevent line breaks */
+            overflow: hidden; /* Hide text until typed */
+            width: 0;
+            animation: typing 5s steps(50, end) forwards, blink-caret 0.75s step-end infinite;
+        }
+
+        .Pro{
+           
+           border-radius: 0px;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           text-align: center;
+       }
+
+       .proo{
+           margin: 0px;
+           padding: 0px;
+           position: relative;
+       }
+
+       .proo li{
+           list-style: none;
+           margin: 15px;
+           color: #fff;
+           font-size: xx-large;
+           font-weight:800;
+           font-family: system-ui ;
+           letter-spacing: 3px;
+           text-shadow: 1px 1px 1px #c00588, 1px 1.5px 1px #c00588,
+           1px 2px 1px #c00588,1px 2.5px 1px #c00588,
+           1px 3px 1px #c00588 , 1px 4px 1px #c00588 ;
+       }
+
+       .proo li a{
+           color: #fff;
+           background: #0c01aa;
+           border-radius: 10px;
+           text-decoration: none;
+           padding: 15px 20px;
+           display: inline-block;
+           transition: 0.5s;
+           position: relative;
+           z-index: 10;
+           text-shadow: 1px 1px 1px #000025, 1px 1.5px 1px #000025,
+           1px 2px 1px #000025,1px 2.5px 1px #000025,
+           1px 3px 1px #000025 , 1px 4px 1px #000025 ;
+
+       }
+       
+
+       .proo:hover li a{
+           opacity: 0;
+       }
+
+       .proo li a:hover{
+           transform: scale(1.4);
+           background: #3c004b;
+           opacity: 1;
+       }
+
+       .proo li::after{
+           content: attr(data-text);
+           color: #080072;
+           position: absolute;
+           left: 50%;
+           top: 50%;
+           transform: translate( -50% , -50% );
+           font-size: 100px;
+           font-weight: bold;
+           opacity: 0;
+           letter-spacing: 40px;
+           transition: 0.5s;
+           pointer-events: none;
+
+       }
+       .proo li:hover::after{
+           opacity: 0.5;
+           letter-spacing: 5px;
+       }
+       
+       #cars {
+           content: "";
+           opacity: 0;
+           font-size: 100px;
+           display: block;
+           color: #0800729a;
+           position: absolute;
+           left: 50%;
+           top: 50%;
+           width: 400px;
+           font-size: 10px;
+           transform: translate( -50% , -150% );
+           transition:  0.5s ease;
+       }
+     
+       .Car:hover #cars {
+           font-size: 100px;
+           opacity: 1;
+           color: #cc06fdf1;
+           
+       }
+       #Prop {
+           content: "";
+           opacity: 0;
+           font-size: 100px;
+           display: block;
+           color: #0800729a;
+           position: absolute;
+           left: 50%;
+           top: 50%;
+           font-size: 10px;
+           transition: 0.5s ease;
+           transform: translate( -50% , -150% );
+       }
+
+     
+       .Prop:hover #Prop {
+           opacity: 1;
+           color: #cc06fdf1;
+           font-size: 100px;
+       }
+
+       #mob {
+           content: "";
+           opacity: 0;
+           font-size: 100px;
+           display: block;
+           color: #0800729a;
+           position: absolute;
+           left: 50%;
+           top: 50%;
+           font-size: 10px;
+           transition: 0.5s ease;
+           transform: translate( -50% , -150% );
+       }
+     
+       .mob:hover #mob {
+           opacity: 1;
+           color: #cc06fdf1;
+           font-size: 100px;
+       }
+
+       #elec {
+           content: "";
+           opacity: 0;
+           font-size: 100px;
+           display: block;
+           color: #0800729a;
+           position: absolute;
+           left: 50%;
+           top: 50%;
+           font-size: 10px;
+           transition: 0.5s ease;
+           transform: translate( -50% , -150% );
+       }
+     
+       .elec:hover #elec {
+           opacity: 1;
+           color: #cc06fdf1;
+           font-size: 100px;
+       }
+       
+       #Fu {
+           content: "";
+           opacity: 0;
+           font-size: 100px;
+           display: block;
+           color: #0800729a;
+           position: absolute;
+           left: 50%;
+           top: 50%;
+           font-size: 10px;
+           transition: 0.5s  ease;
+           transform: translate( -50% , -150% );
+       }
+     
+       .Fu:hover #Fu {
+           opacity: 1;
+           color: #cc06fdf1;
+           font-size: 100px;
+       }
+
+       #Job {
+           content: "";
+           opacity: 0;
+           font-size: 100px;
+           display: block;
+           color: #0800729a;
+           position: absolute;
+           left: 50%;
+           top: 50%;
+           font-size: 10px;
+           transition: 0.5s ease;
+           transform: translate( -50% , -150% );
+       }
+     
+       .Job:hover #Job {
+           opacity: 1;
+           color: #cc06fdf1;
+           font-size: 100px;
+       }
+       .contact-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .contact-buttons a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5em;
+            background: #1abc9c;
+            border-radius: 50%;
+            margin-left: 5px;
+            display: inline-block;
+            font-size: 1.5em;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .contact-buttons a.telegram {
+            background: #0088cc;
+        }
+        .contact-buttons a.whatsapp {
+            background: #25D366;
+        }
+        
+        .contact-buttons a:hover {
+            background-color: #16a085; /* Darker shade for hover effect */
+        }
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">Ahmed Elnahrawy</div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#products">Products</a>
+                <a href="#contact-buttons">Contacts</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero" id="home">
+        <h1>Welcome with Ahmed Elnahrawy</h1>
+        <img src="https://media.tenor.com/n1AYVbwRmSgAAAAi/alien-alien-dance.gif" alt="Logo">
+    </div>
+
+    <section id="services">
+        <div class="section-title">Our Services</div>
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon"><i class="fa fa-cogs"></i></div>
+                <div class="card-content">
+                    <h4>Graphic Solution</h4>
+                    <h5>Create photo , logo or video editing </h5>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa fa-wrench"></i></div>
+                <div class="card-content">
+                    <h4>Programming</h4>
+                    <h5>Applications and websites development, teaching paths, and building systems</h5>
+                </div>
+            </div>
+            <!-- Add more service cards as needed -->
+        </div>
+    </section>
+
+    <section id="products">
+        <div class="section-title">Our Products</div>
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon"><i class="fa fa-laptop"></i></div>
+                <div class="card-content">
+                    <h4>Smart Device</h4>
+                    <h5>Find the best phone or computer to suit your capabilities and minimum requirements. We provide you with what you need in record time.</h5>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-car"></i></div>
+                <div class="card-content">
+                    <h4>Cars</h4>
+                    <h5>We provide you with a car with a driver anywhere in the world.. and we provide you with owning the car of your dreams only in the places where you are allowed to own a car</h5>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <div class="Pro">
+
+        <ul class="proo">
+            <li data-text="Cars" class="Car">
+                <a href="index.php"  class="carss">Cars</a>
+                <i class="fa-solid fa-car" id="cars"></i>
+            </li>
+            <li data-text="Properties" class="Prop">
+                <a href="">Properties</a>
+                <i class="fa-regular fa-building" id="Prop"></i>
+            </li>
+            <li data-text="Mobiles" class="mob">
+                <a href="#">Mobiles</a>
+                <i class="fa-solid fa-mobile-screen-button" id="mob"></i>
+            </li>
+            <li data-text="Electronics" class="elec">
+                <a href="#">Electronics</a>
+                <i class="fa-solid fa-tv" id="elec"></i>
+            </li>
+            <li data-text="Furniture" class="Fu">
+                <a href="#">Furniture</a>
+                <i class="fa-solid fa-couch" id="Fu"></i>
+            </li>
+            <li data-text="Jobs" class="Job">
+                <a href="#">Jobs</a>
+                <i class="fa-solid fa-user-tie" id="Job"></i>
+            </li>
+        </ul>
+        <br>
+
+        
+    </div>
+
+    <footer>
+        <p>&copy; Ahmed Elnahrawy. All rights reserved.</p>
+        <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+        <div class="contact-buttons" id="contact-buttons">
+            <a href="https://wa.me/+201060233326" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://t.me/nhrawyyyy" class="telegram" target="_blank"><i class="fab fa-telegram"></i></a>
+        </div>
+    </footer>
+</body>
+</html>
