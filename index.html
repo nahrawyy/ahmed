@@ -12,6 +12,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            cursor: pointer;
         }
         html {
             scroll-behavior: smooth;
@@ -84,6 +85,82 @@
             height: auto;
             filter: brightness(0.8);
         }
+        .drop-button {
+            background-color: #0077b6;
+            color: white;
+            float: right;
+            margin: 30px;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        .drop-button:hover {
+            background-color: #005f87;
+        }
+        .popup {
+            position: fixed;
+            top: -100px; 
+            left: 50%;
+            transform: translateX(-250%); 
+            width: 45%;
+            padding: 20px;
+            background-color: #ffffff; 
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, top 0.7s ease; 
+            max-height: 80vh; 
+            overflow-y: auto;
+        }
+        .popup.active {
+            visibility: visible;
+            opacity: 1;
+            top: 50%; 
+            transform: translate(-50%, -50%); 
+            z-index: 5000;
+        }
+        .popup::-webkit-scrollbar {
+            width: 15px;
+        }
+        .popup::-webkit-scrollbar-thumb {
+            background-color: #0077b6;
+            border-radius: 60px;
+            height: 90%;
+        }
+        .close-popup {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: block;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+        }
+        .close-popup:hover {
+            background-color: #c9302c;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
         .section-title {
             display: flex;
             justify-content: center;
@@ -96,6 +173,20 @@
             1px 2px 1px #000025,1px 2.5px 1px #000025,
             1px 3px 1px #000025 , 1px 4px 1px #000025 ;
         }
+        .popup_head{
+            display: flex;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: 100;
+            margin-bottom: 7px;
+            color: rgb(4, 181, 187);
+            text-shadow: 1px 1px 1px #000025, 1px 1.5px 1px #000025,
+            1px 2px 1px #000025,1px 2.5px 1px #000025,
+            1px 3px 1px #000025 , 1px 4px 1px #000025 ;
+        }
+        #products{
+            size: 100%;
+        }
         .cards {
             display: flex;
             flex-wrap: wrap;
@@ -103,7 +194,7 @@
             gap: 1rem;
             padding: 0 1rem;
         }
-        .card {
+        .card1 {
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -112,7 +203,7 @@
             width: 300px;
             margin: 1rem;
         }
-        .card:hover {
+        .card1:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
@@ -139,9 +230,9 @@
             background: #003366;
             color: #fff;
             text-align: center;
-            padding: 1rem;
+            padding: 1rem ;
             position: relative;
-            bottom: 0;
+            bottom: 0;    
             width: 100%;
         }
         footer a {
@@ -154,13 +245,12 @@
         }
         .typewriter-text {
             font-size: 24px;
-            border-right: 2px solid #ffdd57; /* Cursor effect */
-            white-space: nowrap; /* Prevent line breaks */
-            overflow: hidden; /* Hide text until typed */
+            border-right: 2px solid #ffdd57; 
+            white-space: nowrap; 
+            overflow: hidden; 
             width: 0;
             animation: typing 5s steps(50, end) forwards, blink-caret 0.75s step-end infinite;
         }
-
         .Pro{
            
            border-radius: 0px;
@@ -168,15 +258,13 @@
            justify-content: center;
            align-items: center;
            text-align: center;
-       }
-
-       .proo{
+        }
+        .proo{
            margin: 0px;
            padding: 0px;
            position: relative;
-       }
-
-       .proo li{
+        }
+        .proo li{
            list-style: none;
            margin: 15px;
            color: #fff;
@@ -187,9 +275,8 @@
            text-shadow: 1px 1px 1px #c00588, 1px 1.5px 1px #c00588,
            1px 2px 1px #c00588,1px 2.5px 1px #c00588,
            1px 3px 1px #c00588 , 1px 4px 1px #c00588 ;
-       }
-
-       .proo li a{
+        }
+        .proo li a{
            color: #fff;
            background: #0c01aa;
            border-radius: 10px;
@@ -202,21 +289,16 @@
            text-shadow: 1px 1px 1px #000025, 1px 1.5px 1px #000025,
            1px 2px 1px #000025,1px 2.5px 1px #000025,
            1px 3px 1px #000025 , 1px 4px 1px #000025 ;
-
-       }
-       
-
-       .proo:hover li a{
+        }
+        .proo:hover li a{
            opacity: 0;
-       }
-
-       .proo li a:hover{
+        }
+        .proo li a:hover{
            transform: scale(1.4);
            background: #3c004b;
            opacity: 1;
-       }
-
-       .proo li::after{
+        }
+        .proo li::after{
            content: attr(data-text);
            color: #080072;
            position: absolute;
@@ -229,14 +311,12 @@
            letter-spacing: 40px;
            transition: 0.5s;
            pointer-events: none;
-
-       }
-       .proo li:hover::after{
+        }
+        .proo li:hover::after{
            opacity: 0.5;
            letter-spacing: 5px;
-       }
-       
-       #cars {
+        }
+        #cars {
            content: "";
            opacity: 0;
            font-size: 100px;
@@ -249,15 +329,13 @@
            font-size: 10px;
            transform: translate( -50% , -150% );
            transition:  0.5s ease;
-       }
-     
+        }
        .Car:hover #cars {
            font-size: 100px;
            opacity: 1;
-           color: #cc06fdf1;
-           
-       }
-       #Prop {
+           color: #cc06fdf1;   
+        }
+        #Prop {
            content: "";
            opacity: 0;
            font-size: 100px;
@@ -269,16 +347,14 @@
            font-size: 10px;
            transition: 0.5s ease;
            transform: translate( -50% , -150% );
-       }
-
-     
-       .Prop:hover #Prop {
+        }    
+        .Prop:hover #Prop {
            opacity: 1;
            color: #cc06fdf1;
            font-size: 100px;
-       }
-
-       #mob {
+           margin-top: 100px;
+        }
+        #mob {
            content: "";
            opacity: 0;
            font-size: 100px;
@@ -290,15 +366,14 @@
            font-size: 10px;
            transition: 0.5s ease;
            transform: translate( -50% , -150% );
-       }
-     
-       .mob:hover #mob {
+        }
+        .mob:hover #mob {
            opacity: 1;
            color: #cc06fdf1;
            font-size: 100px;
-       }
-
-       #elec {
+           margin-top: 200px;
+        }
+        #elec {
            content: "";
            opacity: 0;
            font-size: 100px;
@@ -310,15 +385,13 @@
            font-size: 10px;
            transition: 0.5s ease;
            transform: translate( -50% , -150% );
-       }
-     
-       .elec:hover #elec {
+        } 
+        .elec:hover #elec {
            opacity: 1;
            color: #cc06fdf1;
            font-size: 100px;
-       }
-       
-       #Fu {
+        }
+        #Fu {
            content: "";
            opacity: 0;
            font-size: 100px;
@@ -330,15 +403,13 @@
            font-size: 10px;
            transition: 0.5s  ease;
            transform: translate( -50% , -150% );
-       }
-     
-       .Fu:hover #Fu {
+        } 
+        .Fu:hover #Fu {
            opacity: 1;
            color: #cc06fdf1;
            font-size: 100px;
-       }
-
-       #Job {
+        }
+        #Job {
            content: "";
            opacity: 0;
            font-size: 100px;
@@ -350,28 +421,25 @@
            font-size: 10px;
            transition: 0.5s ease;
            transform: translate( -50% , -150% );
-       }
-     
-       .Job:hover #Job {
+        }
+        .Job:hover #Job {
            opacity: 1;
            color: #cc06fdf1;
            font-size: 100px;
-       }
-       .contact-buttons {
+        }
+        .contact-buttons {
             position: absolute;
             top: 10px;
             right: 10px;
         }
         .contact-buttons a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5em;
-            background: #1abc9c;
-            border-radius: 50%;
-            margin-left: 5px;
             display: inline-block;
-            font-size: 1.5em;
-            text-align: center;
+            padding: 10px 20px;
+            color: white;
+            font-size: x-large;
+            text-decoration: none;
+            margin: 5px;
+            border-radius: 20px;
             transition: background-color 0.3s ease;
         }
         .contact-buttons a.telegram {
@@ -382,9 +450,78 @@
         }
         
         .contact-buttons a:hover {
-            background-color: #16a085; /* Darker shade for hover effect */
+            background-color: #16a085; 
+        }
+        @media (min-width: 400px) and (max-width: 750px) {
+            html, body {
+                overflow-x: hidden; 
+                width: 100%; 
+                margin: 0;
+                padding: 0;
+            }
+            header {
+                padding: 0rem;
+            }
+            .header-container .logo{
+                content: "Nahrawy";
+                font-size: small;
+            }
+            .hero .h1{
+                content: "hello with Nahrawy";
+                font-size: small;
+            }
+            .cards {
+                flex-direction: column; 
+                overflow-x: auto;
+            }
+            .card1 {
+                width: 100%; 
+            }
+            nav {
+                flex-direction:row; 
+                justify-content: right;
+            }
+            .nav a{
+                font-size: xx-small;
+            }
+            .section-title {
+                font-size: 2rem; 
+                margin: 30px 0;
+            }
+            .typewriter-text {
+                font-size: 18px; 
+            }
+            footer {
+            background: #003366;
+            color: #fff;
+            text-align: left;
+            padding: 1rem ;
+            position: relative;
+            bottom: 0;
+            font-size: small;
+            width: 100%;
+            }
+            footer a {
+                color: #ffcc00;
+                text-decoration: none;
+                margin: 0 0.5rem;
+            }
+            #slot-container {
+            perspective: 1000px;
+            width: 200px; 
+            height: 300px; 
+            position: fixed; 
+            bottom: 50%; 
+            left: 10%; 
+            }
         }
         @media (max-width: 768px) {
+            html, body {
+                overflow-x:auto; 
+                width: 100%; 
+                margin: 0;
+                padding: 0;
+            }
             .header-container {
                 flex-direction: column;
                 align-items: flex-start;
@@ -398,6 +535,100 @@
                 align-items: center;
             }
         }
+        #slot-container {
+            perspective: 1000px;
+            width: 200px; 
+            height: 300px; 
+            position: fixed; 
+            bottom: 43%; 
+            left: 90px;
+        }
+        .section-title1 {
+            display:flex;
+            justify-content: center;
+            font-size: 25px;
+            font-weight: 800;
+            margin-bottom: 50px;
+            margin-top: auto;
+            z-index: initial;
+            color: #ff20da;
+            text-shadow: 1px 1px 1px #00e1ff, 1px 1.5px 1px #00e1ff,
+            1px 2px 1px #00e1ff,1px 2.5px 1px #00e1ff,
+            1px 3px 1px #00e1ff , 1px 4px 1px #00e1ff ;
+        }
+        #slot {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            transform: rotateX(0deg);
+            transition: transform 1.5s ease;    
+        }
+        .card {
+            position: absolute;
+            width: 100%;
+            height: 150px;
+            background: white;
+            border: 4px solid #003366;
+            transform-origin: 90% 75px; 
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px; 
+            margin-bottom: 10px;
+            border-radius: 15px;
+        }
+        .card:hover{
+            
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgb(255, 0, 0) ;
+        }
+        .card:hover .circle-btn{
+            background-color: red; 
+            transform: scale(1.5) rotate(30deg) ; 
+            color: #00ff37;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 12px 24px rgba(0, 0, 0, 0.15); /* Add a more pronounced shadow */
+            transition: background-color 0.3s ease, transform 0.8s ease, color 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid #00ff37 ;
+        }
+        .card-title {
+            font-size: 0.9rem;
+            margin: 5px 0;
+        }
+        .card-photo-container {
+            width: 80%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .card-photo {
+            width: 100%;
+            height: 100%;
+        }
+        .circle-btn {
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            font-size: 1.5rem;
+        }
+        .hidden-script {
+            display: none;
+            font-weight: bold;
+            font-size: small;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .card:nth-child(1) { transform: rotateX(60deg) translateZ(140px); }
+        .card:nth-child(2) { transform: rotateX(120deg) translateZ(140px); }
+        .card:nth-child(3) { transform: rotateX(180deg) translateZ(140px); }
+        .card:nth-child(4) { transform: rotateX(240deg) translateZ(140px); }
+        .card:nth-child(5) { transform: rotateX(300deg) translateZ(140px); }
+        .card:nth-child(6) { transform: rotateX(360deg) translateZ(140px); }
     </style>
 </head>
 <body>
@@ -408,7 +639,7 @@
                 <a href="#home">Home</a>
                 <a href="#services">Services</a>
                 <a href="#products">Products</a>
-                <a href="#contact-buttons">Contacts</a>
+                <a href="#footer" id="contact-link" >Contacts</a>
             </nav>
         </div>
     </header>
@@ -417,39 +648,57 @@
         <h1>Welcome with Ahmed Elnahrawy</h1>
         <img src="https://media.tenor.com/n1AYVbwRmSgAAAAi/alien-alien-dance.gif" alt="Logo">
     </div>
+    <div class="button-container">
+        <button class="drop-button" onclick="showPopup()">About ..</button>
+    </div>
 
+    <div class="popup" id="single-popup">
+        <h3 class="popup_head">About: Ahmed Elnahrawy</h3>
+        <p>Ahmed Elnahrawy is a skilled and adaptable professional with a rich and diverse career that spans several fields, showcasing his ability to quickly learn and succeed in different industries. With a foundation in IT support and data entry. <br>
+            Ahmed began his career at Vodafone (Egy) between 2016 and 2018, where he gained technical skills essential for troubleshooting and managing data. <br>
+
+            Afterward, Ahmed transitioned into freelance car sales from 2018 to 2020, where he demonstrated entrepreneurial skills and his ability to connect with clients on a personal level, honing his negotiation and customer service abilities. <br>
+            
+            From 2020 to 2023, he worked as a Python developer at Smart Solutions (Egy), where he developed backend solutions, showcasing his programming and problem-solving skills. In parallel, Ahmed has been working as a freelance graphic designer since 2018, combining his creative abilities with his technical expertise to deliver high-quality visual designs. <br>
+            
+            Education: <br>
+            Ahmed studied Maritime Transportation at the Arab Academy for Science, Technology & Maritime Transport (AAST) from 2018 to 2021, earning a GPA of 2.8. His academic background in this field reflects his interest in complex systems and logistics.</p>
+        <button class="close-popup" onclick="closePopup()">Close</button>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+    <br>
     <section id="services">
-        <div class="section-title">Our Services</div>
+        <div class="section-title">Services</div>
         <div class="cards">
-            <div class="card">
+            <div class="card1">
                 <div class="card-icon"><i class="fa fa-cogs"></i></div>
                 <div class="card-content">
                     <h4>Graphic Solution</h4>
                     <h5>Create photo , logo or video editing </h5>
                 </div>
             </div>
-            <div class="card">
+            <div class="card1">
                 <div class="card-icon"><i class="fa fa-wrench"></i></div>
                 <div class="card-content">
                     <h4>Programming</h4>
                     <h5>Applications and websites development, teaching paths, and building systems</h5>
                 </div>
             </div>
-            <!-- Add more service cards as needed -->
         </div>
     </section>
 
     <section id="products">
-        <div class="section-title">Our Products</div>
+        <div class="section-title">Products</div>
         <div class="cards">
-            <div class="card">
+            <div class="card1">
                 <div class="card-icon"><i class="fa fa-laptop"></i></div>
                 <div class="card-content">
                     <h4>Smart Device</h4>
                     <h5>Find the best phone or computer to suit your capabilities and minimum requirements. We provide you with what you need in record time.</h5>
                 </div>
             </div>
-            <div class="card">
+            <div class="card1">
                 <div class="card-icon"><i class="fa-solid fa-car"></i></div>
                 <div class="card-content">
                     <h4>Cars</h4>
@@ -459,31 +708,34 @@
             
         </div>
     </section>
+
+    <div class="section-title">Market</div>
+    
     <div class="Pro">
 
         <ul class="proo">
             <li data-text="Cars" class="Car">
-                <a href="index.php"  class="carss">Cars</a>
+                <a class="carss">Cars</a>
                 <i class="fa-solid fa-car" id="cars"></i>
             </li>
             <li data-text="Properties" class="Prop">
                 <a >Properties</a>
-                <i class="fa-regular fa-building" id="Prop"></i>
+                <i class="fa fa-home" id="Prop"></i>
             </li>
             <li data-text="Mobiles" class="mob">
-                <a href="#">Mobiles</a>
-                <i class="fa-solid fa-mobile-screen-button" id="mob"></i>
+                <a >Mobiles</a>
+                <i class="fa fa-phone" id="mob"></i>
             </li>
             <li data-text="Electronics" class="elec">
-                <a href="#">Electronics</a>
+                <a >Electronics</a>
                 <i class="fa-solid fa-tv" id="elec"></i>
             </li>
             <li data-text="Furniture" class="Fu">
-                <a href="#">Furniture</a>
+                <a >Furniture</a>
                 <i class="fa-solid fa-couch" id="Fu"></i>
             </li>
             <li data-text="Jobs" class="Job">
-                <a href="#">Jobs</a>
+                <a >Jobs</a>
                 <i class="fa-solid fa-user-tie" id="Job"></i>
             </li>
         </ul>
@@ -491,14 +743,169 @@
 
         
     </div>
-
-    <footer>
+    <section>
+        <div id="slot-container">
+            <div class="section-title1">Skills</div>
+            <div id="slot">
+                <div class="card">
+                    <h2 class="card-title">HTML</h2>
+                    <div class="card-photo-container">
+                        <img src="https://images.vexels.com/media/users/3/166383/isolated/lists/6024bc5746d7436c727825dc4fc23c22-html-programming-language-icon.png" class="card-photo" alt="Photo 1">
+                    </div>
+                    <button class="circle-btn" onclick="toggleScript(this)">+</button>
+                    <div class="hidden-script">
+                        <p>Perfect HTML Structure with a High quality Code content like Text, Buttons, Images, and Links.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">Css</h2>
+                    <div class="card-photo-container">
+                        <img src="https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/css3-512.png" class="card-photo" alt="Photo 2">
+                    </div>
+                    <button class="circle-btn" onclick="toggleScript(this)">+</button>
+                    <div class="hidden-script">
+                        <p>Visually enhance web pages by controlling layout, colors, etc... Create responsive designs that adapts to different Screen-Sizes</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">JavaScript</h2>
+                    <div class="card-photo-container">
+                        <img src="https://static.vecteezy.com/system/resources/previews/027/127/463/non_2x/javascript-logo-javascript-icon-transparent-free-png.png" class="card-photo" alt="Photo 3">
+                    </div>
+                    <button class="circle-btn" onclick="toggleScript(this)">+</button>
+                    <div class="hidden-script">
+                        <p>Add Dynamic behavior to websites, such as Animations.. Create complex web applications , Fetch to SQL or DBs</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">Python</h2>
+                    <div class="card-photo-container">
+                        <img src="https://cdn3.iconfinder.com/data/icons/logos-and-brands-adobe/512/267_Python-512.png" class="card-photo" alt="Photo 4">
+                    </div>
+                    <button class="circle-btn" onclick="toggleScript(this)">+</button>
+                    <div class="hidden-script">
+                        <p>App & Web development, Data Analysis.. Also Bypass codes for Ethical hacking used ,, Adabt some Algorizms</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">PHP</h2>
+                    <div class="card-photo-container">
+                        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968332.png" class="card-photo" alt="Photo 5">
+                    </div>
+                    <button class="circle-btn" onclick="toggleScript(this)">+</button>
+                    <div class="hidden-script">
+                        <p>Building and developing Fully dynamic websites and web apps ,, Perfection handle tasks related to website and Data Management</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-title">Graphic</h2>
+                    <div class="card-photo-container">
+                        <img src="https://www.freeiconspng.com/uploads/logo-design-icon-symbol-4.png" class="card-photo" alt="Photo 6">
+                    </div>
+                    <button class="circle-btn" onclick="toggleScript(this)">+</button>
+                    <div class="hidden-script">
+                        <p>Create and Upgrade any kind of Photo, Video or Logo ..  typography, colors, and layout to convey ideas, evoke emotions, and capture #_Attention. </p>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer id="footer">
         <p>&copy; Ahmed Elnahrawy. All rights reserved.</p>
         <p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
         <div class="contact-buttons" id="contact-buttons">
             <a href="https://wa.me/+201060233326" class="whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
             <a href="https://t.me/nhrawyyyy" class="telegram" target="_blank"><i class="fab fa-telegram"></i></a>
+            
         </div>
     </footer>
+    <script>
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            const angle = Math.floor(scrollPosition / 50) * 72; 
+            document.getElementById('slot').style.transform = `rotateX(${angle + 60}deg)`; 
+        });
+        function toggleScript(button) {
+            const hiddenScript = button.nextElementSibling;
+            hiddenScript.style.display = hiddenScript.style.display === 'none' || hiddenScript.style.display === '' ? 'block' : 'none';
+        }
+        function toggleScript(button) {
+            const hiddenScript = button.nextElementSibling;
+            const card = button.parentElement; 
+            const allCards = document.querySelectorAll('.card'); 
+            allCards.forEach((otherCard) => {
+                const otherHiddenScript = otherCard.querySelector('.hidden-script'); 
+                if (otherCard !== card) {
+                    
+                    otherHiddenScript.style.display = 'none'; 
+                    otherCard.style.width = '100%'; 
+                    otherCard.style.height = '150px'; 
+                    otherCard.style.borderColor = 'black'; 
+                }
+            });
+            if (hiddenScript.style.display === 'none' || hiddenScript.style.display === '') {
+                hiddenScript.style.display = 'block';
+                card.style.width = '100%'; 
+                card.style.height = '90%'; 
+                card.style.background = 'white'; 
+                card.style.borderColor = 'yellow'; 
+                card.style.transition = 'all 0.3s ease'; 
+            } else {
+                hiddenScript.style.display = 'none';
+                card.style.width = '100%'; 
+                card.style.height = '150px'; 
+                card.style.borderColor = 'black'; 
+            }
+        }
+        const contactLink = document.getElementById('contact-link');
+        const contactButtons = document.querySelectorAll('.contact-buttons a');
+        const footer = document.getElementById('footer'); 
+        const colors = ['#ff0000', '#ffcc00', '#00ff00'];
+        let colorIndex = 0; 
+        let intervalId = null;
+        function startTrafficLightEffect() {
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+            intervalId = setInterval(() => {
+                contactButtons.forEach((button) => {
+                    button.style.backgroundColor = colors[colorIndex];
+                });
+                colorIndex = (colorIndex + 1) % colors.length;
+            }, 500); 
+            setTimeout(() => {
+                clearInterval(intervalId); 
+                contactButtons.forEach((button) => {
+                    button.style.backgroundColor = ''; 
+                });
+            }, 5000); 
+        }
+        contactLink.addEventListener('click', (event) => {
+            event.preventDefault(); 
+            startTrafficLightEffect(); 
+            footer.scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+        function showPopup() {
+            const popup = document.getElementById('single-popup');
+            const overlay = document.getElementById('overlay');
+            popup.classList.add('active');
+            overlay.classList.add('active'); 
+        }
+        function closePopup() {
+            const popup = document.getElementById('single-popup');
+            const overlay = document.getElementById('overlay');
+            popup.classList.remove('active');
+            overlay.classList.remove('active'); 
+        }
+    </script>
 </body>
 </html>
