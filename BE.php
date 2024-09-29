@@ -1,12 +1,21 @@
 <?php
-// تعيين نوع المحتوى كـ JSON
-header('Content-Type: application/json');
 
-// البيانات التي تريد إرسالها إلى JavaScript
-$data = [
-    'message' => 'مرحبا من PHP!'
-];
+class mido{
 
-// تحويل البيانات إلى JSON وإرجاعها
-echo json_encode($data);
-?>
+
+    function echo_name($name1 , $name2 , $name3) {
+        echo "My name is: " . $name1 . "<br>";  // Added a line break
+        echo "My second name is: " . $name2 . "<br>";  // Added a line break
+        echo "My third name is: " . $name3 . "<br>";  // Added a line break
+    }
+
+    function numb(){
+        echo "ahmed <br>";
+    }
+}
+
+$s = new mido();
+
+$s -> numb();
+$s -> echo_name('ahmed','ammar','elnahrawy');
+
