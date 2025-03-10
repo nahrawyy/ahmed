@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Game</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #333;
+        }
+        .game-container {
+            position: relative;
+            width: 400px;
+            height: 600px;
+            margin: auto;
+            background: #222;
+            overflow: hidden;
+            border: 3px solid #fffb0085;
+        }
+        .info{
+            position: absolute;
+            top: 30%;
+            left: 5%;
+            gap: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .Logo{
+            height: 50px;
+            width: 50px;
+            transition: all 0.5s ease;
+            margin-top: 100px;
+            border-radius: 40%;
+            
+        }
+        .Logo:hover{
+            transform: scale(2);
+            cursor: pointer;
+            background: radial-gradient(#00ff0d59,#ff00bf59) ;
+            box-shadow: 0px 1px 2px 6px #48ff00;
+        }
+        #toggleGame{
+            background-color: brown;
+            border-radius: 10px;
+            font-weight: 800;
+            width: 100px;
+        }
+        #toggleGame:hover{
+            background: #740000;
+            cursor: pointer;
+        }
+        .road {
+            position: absolute;
+            width: 100%;
+            height: 200%;
+            background: url('https://thumbs.dreamstime.com/b/asphalt-road-top-view-white-yellow-lines-d-rendered-81998002.jpg') repeat-y;
+            background-size:contain;
+            top: -100%;
+            animation: moveRoad 2s linear infinite;
+        }
+        @keyframes moveRoad {
+            from { top: -100%; }
+            to { top: 0; }
+        }
+        .car {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            bottom: 20px;
+            left: 175px;
+            background: url("https://png.pngtree.com/png-clipart/20230126/original/pngtree-car-top-view-image-png-image_8931232.png")no-repeat;
+            background-size: contain;
+            border-radius: 10px;
+        }
+        .obstacle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url("https://static.vecteezy.com/system/resources/thumbnails/046/353/597/small_2x/australia-sheep-isolated-on-transparent-background-png.png")no-repeat;
+            background-size: contain;
+            border-radius: 10px;
+            top: -120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="road"></div>
+        <div class="car" id="car"></div>
+    </div>
+    <div class="info">
+        <button id="toggleGame" style="padding: 10px 20px; font-size: 16px;">Pause</button>
+        <div class="logo"  >
+            <img src="https://media.tenor.com/n1AYVbwRmSgAAAAi/alien-alien-dance.gif" alt="" class="Logo" onclick="window.open('https://nahrawyy.github.io/ahmed/', '_blank')">
+        </div>
+    </div>
+
+    <script>
+        const car = document.getElementById("car");
+        let carPosition = 175;
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft" && carPosition > 75) {
+                carPosition -= 50;
+            } else if (event.key === "ArrowRight" && carPosition < 275) {
+                carPosition += 50;
+            }
+            car.style.left = carPosition + "px";
+        });
+
+        let gameRunning = true;
+        let gameLoop;
+        let obstacles = [];
+
+        function startGame() {
+            gameRunning = true;
+            gameLoop = setInterval(createObstacle, 2000);
+            document.querySelector(".road").style.animationPlayState = "running";
+            obstacles.forEach(obs => obs.interval = moveObstacle(obs.element));
+        }
+
+        function stopGame() {
+            gameRunning = false;
+            clearInterval(gameLoop);
+            document.querySelector(".road").style.animationPlayState = "paused";
+            obstacles.forEach(obs => clearInterval(obs.interval));
+        }
+
+        document.getElementById("toggleGame").addEventListener("click", function () {
+            if (gameRunning) {
+                stopGame();
+                this.textContent = "Play";
+            } else {
+                startGame();
+                this.textContent = "Pause";
+            }
+        });
+
+        function createObstacle() {
+            if (!gameRunning) return;
+
+            const obstacle = document.createElement("div");
+            obstacle.classList.add("obstacle");
+            document.querySelector(".game-container").appendChild(obstacle);
+
+            let possiblePositions = [50, 150, 250, 350, 450];
+            let obstaclePosition = possiblePositions[Math.floor(Math.random() * possiblePositions.length)];
+
+            obstacle.style.left = obstaclePosition + "px";
+            obstacle.style.top = "-120px";
+
+            let interval = moveObstacle(obstacle);
+            obstacles.push({ element: obstacle, interval });
+        }
+
+        function moveObstacle(obstacle) {
+            return setInterval(() => {
+                if (!gameRunning) return;
+
+                let obstacleTop = parseInt(obstacle.style.top);
+                let obstacleLeft = parseInt(obstacle.style.left);
+                let carLeft = parseInt(car.style.left);
+
+                // Collision detection
+                if (
+                    obstacleTop >= 500 && // Obstacle is near the car
+                    Math.abs(carLeft - obstacleLeft) < 50 // Car and obstacle overlap horizontally
+                ) {
+                    console.log("Crash!");
+                    stopGame();
+                    car.style.background = "url('https://static.vecteezy.com/system/resources/thumbnails/045/084/294/small_2x/cartoon-comic-book-crash-symbol-png.png')no-repeat";
+                    car.style.backgroundSize = "contain";
+                    setTimeout(() => {
+                        window.location.reload(); // إعادة تشغيل اللعبة بعد ثانيتين
+                    }, 2000);
+                }
+
+                if (obstacleTop > 600) {
+                    clearInterval(obstacles.find(obs => obs.element === obstacle)?.interval);
+                    obstacles = obstacles.filter(obs => obs.element !== obstacle);
+                    obstacle.remove();
+                } else {
+                    obstacle.style.top = (obstacleTop + 5) + "px";
+                }
+            }, 20);
+        }
+
+        startGame();
+    </script>
+</body>
+</html>
